@@ -1,10 +1,10 @@
-package org.walletconnect.impls
+package org.bitizen.connect.impls
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import okhttp3.*
-import org.walletconnect.Session
-import org.walletconnect.Session.Transport.Status.*
+import org.bitizen.connect.Session
+import org.bitizen.connect.Session.Transport.Status.*
 import java.lang.Exception
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedQueue

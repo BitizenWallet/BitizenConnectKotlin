@@ -1,13 +1,13 @@
-package org.walletconnect
+package org.bitizen.connect
 
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.walletconnect.impls.FileWCSessionStore
-import org.walletconnect.impls.MoshiPayloadAdapter
-import org.walletconnect.impls.OkHttpTransport
-import org.walletconnect.impls.WCSession
+import org.bitizen.connect.impls.FileWCSessionStore
+import org.bitizen.connect.impls.MoshiPayloadAdapter
+import org.bitizen.connect.impls.OkHttpTransport
+import org.bitizen.connect.impls.WCSession
 import java.io.File
 import java.util.concurrent.TimeUnit
 

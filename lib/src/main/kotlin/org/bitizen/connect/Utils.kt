@@ -1,4 +1,4 @@
-package org.walletconnect
+package org.bitizen.connect
 
 //Map functions that throw exceptions into optional types
 fun <T> nullOnThrow(func: () -> T): T? = try {

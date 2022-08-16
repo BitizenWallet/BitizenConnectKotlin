@@ -1,7 +1,7 @@
-package org.walletconnect.types
+package org.bitizen.connect.types
 
-import org.walletconnect.Session
-import org.walletconnect.nullOnThrow
+import org.bitizen.connect.Session
+import org.bitizen.connect.nullOnThrow
 
 fun Session.PeerMeta.intoMap(params: MutableMap<String, Any?> = mutableMapOf()) =
         params.also {

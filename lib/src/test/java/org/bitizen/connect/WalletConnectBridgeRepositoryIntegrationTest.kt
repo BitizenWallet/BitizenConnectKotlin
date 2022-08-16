@@ -1,12 +1,12 @@
-package org.walletconnect
+package org.bitizen.connect
 
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import org.junit.Test
-import org.walletconnect.impls.FileWCSessionStore
-import org.walletconnect.impls.MoshiPayloadAdapter
-import org.walletconnect.impls.OkHttpTransport
-import org.walletconnect.impls.WCSession
+import org.bitizen.connect.impls.FileWCSessionStore
+import org.bitizen.connect.impls.MoshiPayloadAdapter
+import org.bitizen.connect.impls.OkHttpTransport
+import org.bitizen.connect.impls.WCSession
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -16,7 +16,7 @@ class WalletConnectBridgeRepositoryIntegrationTest {
     /**
      * Integration test that can be used with the wallet connect example dapp
      */
-    //@Test
+    @Test
     fun approveSession() {
         val client = OkHttpClient.Builder().pingInterval(1000, TimeUnit.MILLISECONDS).build()
         val moshi = Moshi.Builder().build()

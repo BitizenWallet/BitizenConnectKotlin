@@ -1,8 +1,8 @@
-package org.walletconnect.impls
+package org.bitizen.connect.impls
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import org.walletconnect.nullOnThrow
+import org.bitizen.connect.nullOnThrow
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 

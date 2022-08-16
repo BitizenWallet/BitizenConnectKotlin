@@ -1,4 +1,4 @@
-package org.walletconnect
+package org.bitizen.connect
 
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -115,9 +115,9 @@ interface Session {
 
         interface Builder {
             fun build(
-                    url: String,
-                    statusHandler: (Status) -> Unit,
-                    messageHandler: (Message) -> Unit
+                url: String,
+                statusHandler: (Status) -> Unit,
+                messageHandler: (Message) -> Unit
             ): Transport
         }
 

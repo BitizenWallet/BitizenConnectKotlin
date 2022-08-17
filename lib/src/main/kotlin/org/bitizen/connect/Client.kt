@@ -1,15 +1,12 @@
 package org.bitizen.connect
 
 interface Client {
-    fun approvedAccounts(): List<String>?
+    fun connect(callback: (Session.MethodCall.Response) -> Unit): String
 
     fun performMethodCall(
         call: Session.MethodCall,
-        callback: ((Session.MethodCall.Response) -> Unit)? = null
+        callback: ((Session.MethodCall.Response) -> Unit)?
     )
-    fun kill()
 
-    fun addCallback(cb: Session.Callback)
-    fun removeCallback(cb: Session.Callback)
-    fun clearCallbacks()
+    fun kill()
 }

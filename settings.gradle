@@ -1,2 +1,3 @@
-include ':lib'
-//include ':lib', ':sample:app'
+//include ':lib'
+//FIXME: test sample app
+include ':lib', ':sample:app'

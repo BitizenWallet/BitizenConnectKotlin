@@ -27,24 +27,26 @@ interface Session {
     fun clearCallbacks()
 
     data class FullyQualifiedConfig(
-            val handshakeTopic: String,
-            val bridge: String,
-            val key: String,
-            val protocol: String = "wc",
-            val version: Int = 1
+        val handshakeTopic: String,
+        val bridge: String,
+        val key: String,
+        val protocol: String = "wc",
+        val version: Int = 1
     )
 
     data class Config(
-            val handshakeTopic: String,
-            val bridge: String? = null,
-            val key: String? = null,
-            val protocol: String = "wc",
-            val version: Int = 1
+        val handshakeTopic: String,
+        val bridge: String? = null,
+        val key: String? = null,
+        val protocol: String = "wc",
+        val version: Int = 1
     ) {
-        fun toWCUri() = "wc:$handshakeTopic@$version?bridge=${URLEncoder.encode(bridge, "UTF-8")}&key=$key"
+        fun toWCUri() =
+            "wc:$handshakeTopic@$version?bridge=${URLEncoder.encode(bridge, "UTF-8")}&key=$key"
 
         fun isFullyQualifiedConfig() = bridge != null && key != null
-        fun toFullyQualifiedConfig() = FullyQualifiedConfig(handshakeTopic, bridge!!, key!!, protocol, version)
+        fun toFullyQualifiedConfig() =
+            FullyQualifiedConfig(handshakeTopic, bridge!!, key!!, protocol, version)
 
         companion object {
             fun fromWCUri(uri: String): Config {
@@ -55,12 +57,20 @@ interface Session {
                 val handshakeTopic = uri.substring(protocolSeparator + 1, handshakeTopicSeparator)
 
                 return if (versionSeparator > 0) {
-                    val version = Integer.valueOf(uri.substring(handshakeTopicSeparator + 1, versionSeparator))
+                    val version = Integer.valueOf(
+                        uri.substring(
+                            handshakeTopicSeparator + 1,
+                            versionSeparator
+                        )
+                    )
                     val params = uri.substring(versionSeparator + 1).split("&").associate {
-                        it.split("=").let { param -> param.first() to URLDecoder.decode(param[1], "UTF-8") }
+                        it.split("=")
+                            .let { param -> param.first() to URLDecoder.decode(param[1], "UTF-8") }
                     }
-                    val bridge = params["bridge"] ?: throw IllegalArgumentException("Missing bridge param in URI")
-                    val key = params["key"] ?: throw IllegalArgumentException("Missing key param in URI")
+                    val bridge = params["bridge"]
+                        ?: throw IllegalArgumentException("Missing bridge param in URI")
+                    val key =
+                        params["key"] ?: throw IllegalArgumentException("Missing key param in URI")
                     Config(handshakeTopic, bridge, key, protocol, version)
                 } else {
                     val version = Integer.valueOf(uri.substring(handshakeTopicSeparator + 1))
@@ -83,7 +93,8 @@ interface Session {
         data class Error(val throwable: Throwable) : Status()
     }
 
-    data class TransportError(override val cause: Throwable) : RuntimeException("Transport exception caused by $cause", cause)
+    data class TransportError(override val cause: Throwable) :
+        RuntimeException("Transport exception caused by $cause", cause)
 
     interface PayloadAdapter {
         fun parse(payload: String, key: String): MethodCall
@@ -108,9 +119,9 @@ interface Session {
         }
 
         data class Message(
-                val topic: String,
-                val type: String,
-                val payload: String
+            val topic: String,
+            val type: String,
+            val payload: String
         )
 
         interface Builder {
@@ -123,10 +134,14 @@ interface Session {
 
     }
 
-    sealed class MethodCallException(val id: Long, val code: Long, message: String) : IllegalArgumentException(message) {
+    sealed class MethodCallException(val id: Long, val code: Long, message: String) :
+        IllegalArgumentException(message) {
         // TODO define proper error codes
-        class InvalidRequest(id: Long, request: String) : MethodCallException(id, 23, "Invalid request: $request")
-        class InvalidAccount(id: Long, account: String) : MethodCallException(id, 3141, "Invalid account request: $account")
+        class InvalidRequest(id: Long, request: String) :
+            MethodCallException(id, 23, "Invalid request: $request")
+
+        class InvalidAccount(id: Long, account: String) :
+            MethodCallException(id, 3141, "Invalid account request: $account")
     }
 
     sealed class MethodCall(private val internalId: Long) {
@@ -137,31 +152,39 @@ interface Session {
         data class SessionUpdate(val id: Long, val params: SessionParams) : MethodCall(id)
 
         data class SendTransaction(
-                val id: Long,
-                val from: String,
-                val to: String?,
-                val nonce: String?,
-                val gasPrice: String?,
-                val gasLimit: String?,
-                val value: String,
-                val data: String
+            val id: Long,
+            val from: String,
+            val to: String?,
+            val nonce: String?,
+            val gasPrice: String?,
+            val gasLimit: String?,
+            val value: String,
+            val data: String
         ) : MethodCall(id)
 
-        data class SignMessage(val id: Long, val address: String, val message: String) : MethodCall(id)
+        data class SignMessage(val id: Long, val address: String, val message: String) :
+            MethodCall(id)
 
         data class Custom(val id: Long, val method: String, val params: List<*>?) : MethodCall(id)
 
-        data class Response(val id: Long, val result: Any?, val error: Error? = null) : MethodCall(id)
+        data class Response(val id: Long, val result: Any?, val error: Error? = null) :
+            MethodCall(id)
     }
 
     data class PeerData(val id: String, val meta: PeerMeta?)
     data class PeerMeta(
-            val url: String? = null,
-            val name: String? = null,
-            val description: String? = null,
-            val icons: List<String>? = null
+        val url: String? = null,
+        val name: String? = null,
+        val description: String? = null,
+        val icons: List<String>? = null
     )
 
-    data class SessionParams(val approved: Boolean, val chainId: Long?, val accounts: List<String>?, val peerData: PeerData?)
+    data class SessionParams(
+        val approved: Boolean,
+        val chainId: Long?,
+        val accounts: List<String>?,
+        val peerData: PeerData?
+    )
+
     data class Error(val code: Long, val message: String)
 }

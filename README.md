@@ -15,11 +15,11 @@ repositories {
 }
 ```
 
-Add the dependency:
+Add the dependency: get the latest release at <https://jitpack.io/#BitizenWallet/BitizenConnectKotlin>
 
 ```gradle
 dependencies {
- implementation 'com.github.BitizenWallet:BitizenConnectKotlin:master-SNAPSHOT'
+ implementation 'com.github.BitizenWallet:BitizenConnectKotlin:12a132c098'
 }
 ```
 

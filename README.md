@@ -1,5 +1,7 @@
 # BitizenConnectKotlin
 
+[![](https://jitpack.io/v/BitizenWallet/BitizenConnectKotlin.svg)](https://jitpack.io/#BitizenWallet/BitizenConnectKotlin)
+
 library to use BitizenConnect with Kotlin or Java
 
 ## Add this library to your project
@@ -23,7 +25,7 @@ dependencies {
 
 ## Basic usage
 
-The sample application is in `/sample`, search for `//FIXME: for sample app` to enable `:sample:app`.
+The sample application is in [/sample](/sample), search for `//FIXME: for sample app` to enable `:sample:app`.
 
 ```kotlin
 // new client

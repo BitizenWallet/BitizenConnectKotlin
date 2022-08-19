@@ -14,8 +14,7 @@
     <TextView
         android:id="@+id/screen_main_response"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:visibility="gone"/>
+        android:layout_height="64dp" />
 
     <Button
         android:id="@+id/screen_main_connect_button"
@@ -24,16 +23,44 @@
         android:text="Connect" />
 
     <Button
-        android:id="@+id/screen_main_tx_button"
+        android:id="@+id/screen_main_eth_sign_button"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-        android:text="Send Example TX"
+        android:text="eth_sign"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/screen_main_personal_sign_button"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:text="personal_sign"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/screen_main_eth_signTypedData_button"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:text="sign_typedData"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/screen_main_send_transaction_button"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:text="eth_sendTransaction"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/screen_main_disconnect_button"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-        android:text="Disonnect"
+        android:text="Disconnect"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/screen_main_reconnect_button"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:text="Reconnect"
         android:visibility="gone" />
 </LinearLayout>

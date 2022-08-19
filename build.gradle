@@ -31,7 +31,9 @@ buildscript {
     }
 
     repositories {
-        google()
+        //FIXME: for sample app
+        // google()
+
         gradlePluginPortal()
         mavenCentral()
     }
@@ -39,8 +41,9 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.38.0'
-        // FIXME: test sample app
-        classpath deps.android.gradlePlugin
+        
+        // FIXME: for sample app
+        // classpath deps.android.gradlePlugin
     }
 }
 

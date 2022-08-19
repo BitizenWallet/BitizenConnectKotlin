@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'org.bitizen.example'
+        applicationId 'org.bitizenexample'
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode 1
@@ -63,5 +63,4 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
-
 }

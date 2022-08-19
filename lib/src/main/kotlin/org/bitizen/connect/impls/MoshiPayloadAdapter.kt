@@ -60,7 +60,6 @@ class MoshiPayloadAdapter(moshi: Moshi) : Session.PayloadAdapter {
     }
 
     override fun prepare(data: Session.MethodCall, key: String): String {
-        println("bingo prepare ${String(data.toBytes())}")
         val bytesData = data.toBytes()
         val hexKey = decode(key)
         val iv = createRandomBytes(16)

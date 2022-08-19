@@ -121,7 +121,7 @@ interface Session {
         data class Message(
             val topic: String,
             val type: String,
-            val payload: String
+            val payload: String,
         )
 
         interface Builder {

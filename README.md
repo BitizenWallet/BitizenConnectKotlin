@@ -19,7 +19,7 @@ Add the dependency: get the latest release at <https://jitpack.io/#BitizenWallet
 
 ```gradle
 dependencies {
- implementation 'com.github.BitizenWallet:BitizenConnectKotlin:12a132c098'
+ implementation 'com.github.BitizenWallet:BitizenConnectKotlin:dc9ee356da'
 }
 ```
 

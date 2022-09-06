@@ -8,12 +8,14 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.screen_main.*
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import org.bitizen.connect.Client
+import org.bitizen.connect.LOGO_URI
 import org.bitizen.connect.Session
 import org.bitizen.connect.impls.BCClient
 import org.bitizen.connect.impls.MoshiPayloadAdapter
@@ -58,7 +60,7 @@ class MainActivity : Activity() {
         if (accounts?.isNotEmpty() == true)
             uiScope.launch {
                 screen_main_status.text = "Connected"
-                screen_main_connect_button.visibility = View.GONE
+                screen_main_connect_button_group.visibility = View.GONE
                 screen_main_disconnect_button.visibility = View.VISIBLE
                 screen_main_reconnect_button.visibility = View.VISIBLE
                 screen_main_eth_sign_button.visibility = View.VISIBLE
@@ -71,7 +73,7 @@ class MainActivity : Activity() {
     private fun sessionClosed() {
         uiScope.launch {
             screen_main_status.text = "Disconnected"
-            screen_main_connect_button.visibility = View.VISIBLE
+            screen_main_connect_button_group.visibility = View.VISIBLE
             screen_main_disconnect_button.visibility = View.GONE
             screen_main_reconnect_button.visibility = View.GONE
             screen_main_eth_sign_button.visibility = View.GONE
@@ -89,6 +91,7 @@ class MainActivity : Activity() {
     @SuppressLint("NewApi")
     override fun onStart() {
         super.onStart()
+        Glide.with(this).load(LOGO_URI).into(screen_main_connect_button)
         screen_main_connect_button.setOnClickListener {
             Log.e(TAG, "screen_main_connect_button: clicked")
             client = BCClient(

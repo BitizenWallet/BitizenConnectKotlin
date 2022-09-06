@@ -1,5 +1,7 @@
 package org.bitizen.connect
 
+val LOGO_URI: String = "https://bitizen.org/sdk/assets/logo.png"
+
 interface Client {
     data class Config(
         val bridge: String,
@@ -7,6 +9,7 @@ interface Client {
         var key: String?,
         var peerId: String?,
     )
+
 
     fun serialize(): Config?
     fun transport(): Session.Transport?
@@ -22,6 +25,4 @@ interface Client {
     )
 
     fun disconnect()
-
-    fun logoUri() : String
 }

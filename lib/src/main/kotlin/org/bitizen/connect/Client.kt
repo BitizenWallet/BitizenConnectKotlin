@@ -22,4 +22,6 @@ interface Client {
     )
 
     fun disconnect()
+
+    fun logoUri() : String
 }

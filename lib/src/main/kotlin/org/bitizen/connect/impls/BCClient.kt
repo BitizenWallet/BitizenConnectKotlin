@@ -144,4 +144,8 @@ class BCClient(
     override fun transport(): Session.Transport? {
         return transport
     }
+
+    override fun logoUri(): String {
+        return "https://bitizen.org/sdk/assets/logo.png"
+    }
 }

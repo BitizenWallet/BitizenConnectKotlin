@@ -45,7 +45,7 @@ class BitizenConnectApi(private val delegate: BitizenConnectDelegate?) {
                 when (status) {
                     is Session.Transport.Status.Connected -> Log.d(TAG, "websocket status:$status")
                     is Session.Transport.Status.Disconnected -> delegate?.didDisconnect()
-                    is Session.Transport.Status.Error -> Log.d(TAG, "websocket status:$status")
+                    is Session.Transport.Status.Error -> delegate?.failedToConnect()
                 }
             },
             { call ->

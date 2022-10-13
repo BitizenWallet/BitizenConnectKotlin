@@ -7,10 +7,12 @@ android {
     buildToolsVersion versions.buildTools
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    packagingOptions {
+        exclude 'META-INF/com.android.tools/proguard/coroutines.pro'
+    }
     defaultConfig {
         applicationId 'org.bitizenexample'
         minSdkVersion versions.minSdk

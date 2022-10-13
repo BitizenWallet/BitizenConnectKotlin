@@ -10,7 +10,10 @@ interface Client {
         var peerId: String?,
     )
 
-
+    fun ethSign(message: String, account: String,callback: (Session.MethodCall.Response) -> Unit)
+    fun personalSign(message: String, account: String,callback: (Session.MethodCall.Response) -> Unit)
+    fun ethSignTypedData(message: String, account: String,callback: (Session.MethodCall.Response) -> Unit)
+    fun ethSendTransaction(transaction: Transaction,callback: (Session.MethodCall.Response) -> Unit)
     fun serialize(): Config?
     fun transport(): Session.Transport?
 
@@ -25,4 +28,5 @@ interface Client {
     )
 
     fun disconnect()
+    fun reconnectIfNeeded()
 }

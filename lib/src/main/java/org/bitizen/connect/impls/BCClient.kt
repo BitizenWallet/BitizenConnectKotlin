@@ -2,6 +2,7 @@ package org.bitizen.connect.impls
 
 import org.bitizen.connect.Client
 import org.bitizen.connect.Session
+import org.bitizen.connect.Transaction
 import org.komputing.khex.extensions.toNoPrefixHexString
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -71,6 +72,51 @@ class BCClient(
         return "https://bitizen.org/wallet/wc?uri=" + wcURL.toWCUri()
     }
 
+    override fun ethSign(message: String, account: String, callback: (Session.MethodCall.Response) -> Unit){
+        performMethodCall(Session.MethodCall.SignMessage(
+            WCSession.createCallId(),
+            address = account,
+            message = message,
+        ),callback)
+    }
+
+    override fun personalSign(
+        message: String,
+        account: String,
+        callback: (Session.MethodCall.Response) -> Unit
+    ) {
+        performMethodCall(Session.MethodCall.Custom(
+            WCSession.createCallId(),
+            method = "personal_sign",
+            params = listOf(message,account)
+        ),callback)
+    }
+
+    override fun ethSignTypedData(
+        message: String,
+        account: String,
+        callback: (Session.MethodCall.Response) -> Unit
+    ) {
+        performMethodCall(Session.MethodCall.Custom(
+            WCSession.createCallId(),
+            method = "eth_signTypedData",
+            params = listOf(message,account)
+        ),callback)
+    }
+
+    override fun ethSendTransaction(transaction: Transaction,callback: (Session.MethodCall.Response) -> Unit) {
+        performMethodCall(Session.MethodCall.SendTransaction(
+         id = WCSession.createCallId(),
+         from=transaction.from,
+         to=transaction.to,
+         nonce=transaction.nonce,
+         gasPrice=transaction.gasPrice,
+         gasLimit=transaction.gasLimit,
+         value=transaction.value,
+         data=transaction.data,
+        ),callback)
+    }
+
     override fun performMethodCall(
         call: Session.MethodCall,
         callback: ((Session.MethodCall.Response) -> Unit)?
@@ -135,6 +181,16 @@ class BCClient(
         )
         transport?.close()
         transport = null;
+    }
+
+    override fun reconnectIfNeeded() {
+        transport?.let {
+            if(!it.isConnected()){
+                config?.apply {
+                    connect(this){}
+                }
+            }
+        }
     }
 
     override fun serialize(): Client.Config? {

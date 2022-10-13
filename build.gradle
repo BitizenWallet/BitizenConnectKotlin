@@ -1,13 +1,13 @@
 buildscript {
     ext {
         versions = [
-                kotlin                    : "1.4.31",
+                kotlin                    : "1.7.10",
                 moshi                     : '1.8.0',
                 okhttp                    : '3.11.0',
                 jupiter                   : '5.7.0',
 
-                'minSdk'                  : 14,
-                'compileSdk'              : 28,
+                'minSdk'                  : 23,
+                'compileSdk'              : 33,
                 'buildTools'              : '28.0.3',
                 'androidPlugin'           : '3.4.0',
 
@@ -32,7 +32,7 @@ buildscript {
 
     repositories {
         //FIXME: for sample app
-        // google()
+         google()
 
         gradlePluginPortal()
         mavenCentral()
@@ -43,7 +43,7 @@ buildscript {
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.38.0'
         
         // FIXME: for sample app
-        // classpath deps.android.gradlePlugin
+         classpath deps.android.gradlePlugin
     }
 }
 

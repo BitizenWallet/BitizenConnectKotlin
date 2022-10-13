@@ -179,6 +179,7 @@ class WCSession(
                     )
                 )
             }
+            else -> {}
         }
         propagateToCallbacks {
             onStatus(
@@ -230,6 +231,7 @@ class WCSession(
                 val callback = requests[data.id] ?: return
                 callback(data)
             }
+            else -> {}
         }
 
         if (accountToCheck?.let { accountCheck(data.id(), it) } != false) {

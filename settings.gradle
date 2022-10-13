@@ -2,3 +2,4 @@ include ':lib'
 
 //FIXME: for sample app
 // include ':lib', ':sample:app'
+//include ':BitizenConnectKotlin'

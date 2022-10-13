@@ -100,7 +100,7 @@ class BCClient(
         performMethodCall(Session.MethodCall.Custom(
             WCSession.createCallId(),
             method = "eth_signTypedData",
-            params = listOf(message,account)
+            params = listOf(account,message)
         ),callback)
     }
 

@@ -69,7 +69,7 @@ class BitizenConnectApi(private val delegate: BitizenConnectDelegate?) {
                 val param = resp.result as Map<*, *>
                 val accounts = param["accounts"] as List<String>
                 val chainId = param["chainId"] as Double
-                delegate?.didConnect(chainId.toInt(), accounts[0])
+                delegate?.didConnect(chainId.toInt(), accounts)
             }
         }
         url = "$wsURL&callbackUrl=$callbackUrl"
